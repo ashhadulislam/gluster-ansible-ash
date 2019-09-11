@@ -1,0 +1,24 @@
+- name: Enable Firewalld
+  firewalld:
+    port: 24007/tcp
+    permanent: yes
+    state: enabled
+    zone: public
+
+- name: Allow specific IP 10.70.43.90
+  iptables:
+    chain: INPUT
+    source: 10.70.43.90
+    protocol: all
+    jump: ACCEPT
+  become: yes
+
+
+- name: Allow specific IP 10.70.43.91
+  iptables:
+    chain: INPUT
+    source: 10.70.43.91
+    protocol: all
+    jump: ACCEPT
+  become: yes
+

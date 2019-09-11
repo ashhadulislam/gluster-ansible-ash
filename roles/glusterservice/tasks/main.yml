@@ -1,0 +1,9 @@
+- name: Start service glusterd, if not started
+  service:
+    name: glusterd
+    state: started
+
+- name: Enable service glusterd, if not started
+  service:
+    name: glusterd
+    enabled: yes

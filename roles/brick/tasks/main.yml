@@ -1,0 +1,35 @@
+# - name: 'ping the nodes'
+#   ping:
+
+
+- name:  Create a folder for bricks
+  file:
+    path: /data/brick1
+    state: directory
+
+
+- name: mount logical volume at brick
+  mount:
+    name: /data/brick1
+    src: /dev/vg00/lv00
+    fstype: xfs
+    state: mounted
+
+- name: to create a sufolder in side mount point
+  file:
+    path: /data/brick1/gv0
+    state: directory
+
+
+# - name: Create a logical volume on top op volume group created above
+#   lvol:
+#     vg: vg00
+#     lv: lv00
+#     size: +100%FREE
+
+
+# - name: create file system
+#   filesystem:
+#     fstype: xfs
+#     dev: /dev/vg00/lv00
+

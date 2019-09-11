@@ -1,0 +1,29 @@
+# - name: 'ping the nodes'
+#   ping:
+
+
+- name:  Create a new primary partition
+  parted:
+    device: /dev/sdb
+    number: 1
+    state: present
+
+- name: Create a volume group on top of /dev/sdb1 with physical extent size = 32MB
+  lvg:
+    vg: vg00
+    pvs: /dev/sdb1
+    pesize: 32
+
+
+- name: Create a logical volume on top op volume group created above
+  lvol:
+    vg: vg00
+    lv: lv00
+    size: +100%FREE
+
+
+- name: create file system
+  filesystem:
+    fstype: xfs
+    dev: /dev/vg00/lv00
+

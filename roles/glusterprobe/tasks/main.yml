@@ -1,0 +1,5 @@
+- name: Connect to Gluster peers.
+  with_items:
+    - 10.70.43.90
+    - 10.70.43.91
+  shell: "gluster peer probe {{ item }}"

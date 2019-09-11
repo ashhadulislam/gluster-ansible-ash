@@ -1,0 +1,23 @@
+- name: "Installing different packages"
+  become: true
+  yum:
+    state: present
+    name:
+      - git
+      - vim
+      - wget
+      - centos-release-gluster
+      - epel-release
+    update_cache: yes
+
+
+- name: "Installing gluster"
+  become: true
+  yum:
+    state: present
+    name:
+      - glusterfs-server
+    update_cache: yes
+
+# - name: "Adding bshrc"
+#   copy: src=../files/bash.bashrc dest=/etc/bash.bashrc owner=root group=root mode=0644
